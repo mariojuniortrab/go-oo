@@ -17,5 +17,5 @@ func main() {
 	contaDaJoana = new(ContaCorrente)
 	contaDaJoana.titular = "Joana"
 
-	fmt.Println(contaDoMario, contaDaFlavia, contaDaJoana)
+	fmt.Println(contaDoMario, contaDaFlavia, *contaDaJoana)
 }
