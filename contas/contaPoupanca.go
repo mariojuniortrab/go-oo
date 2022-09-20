@@ -2,13 +2,13 @@ package contas
 
 import "banco/clientes"
 
-type ContaCorrente struct {
-	Titular                    clientes.Titular
-	NumeroAgencia, NumeroConta int
-	saldo                      float64
+type ContaPoupanca struct {
+	Titular                              clientes.Titular
+	NumeroAgencia, NumeroConta, Operacao int
+	saldo                                float64
 }
 
-func (c *ContaCorrente) Sacar(valorDoSaque float64) (string, float64) {
+func (c *ContaPoupanca) Sacar(valorDoSaque float64) (string, float64) {
 	podeSacar := valorDoSaque > 0 && valorDoSaque <= c.saldo
 
 	if !podeSacar {
@@ -19,7 +19,7 @@ func (c *ContaCorrente) Sacar(valorDoSaque float64) (string, float64) {
 	return "success!", c.saldo
 }
 
-func (c *ContaCorrente) Depositar(valorDoDeposito float64) (string, float64) {
+func (c *ContaPoupanca) Depositar(valorDoDeposito float64) (string, float64) {
 	podeDepositar := valorDoDeposito > 0
 
 	if !podeDepositar {
@@ -30,7 +30,7 @@ func (c *ContaCorrente) Depositar(valorDoDeposito float64) (string, float64) {
 	return "success!", c.saldo
 }
 
-func (c *ContaCorrente) Transferir(valorDaTransferencia float64, contaDestino *ContaCorrente) (string, float64, float64) {
+func (c *ContaPoupanca) Transferir(valorDaTransferencia float64, contaDestino *ContaPoupanca) (string, float64, float64) {
 	podeTransferir := c.saldo > 0 && valorDaTransferencia > 0 && valorDaTransferencia <= c.saldo
 
 	if !podeTransferir {
@@ -42,6 +42,6 @@ func (c *ContaCorrente) Transferir(valorDaTransferencia float64, contaDestino *C
 	return "success!", c.saldo, contaDestino.saldo
 }
 
-func (c *ContaCorrente) ObterSaldo() float64 {
+func (c *ContaPoupanca) ObterSaldo() float64 {
 	return c.saldo
 }
