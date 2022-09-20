@@ -39,7 +39,7 @@ func (c *ContaCorrente) Transferir(valorDaTransferencia float64, contaDestino *C
 	}
 
 	c.saldo -= valorDaTransferencia
-	contaDestino.saldo -= valorDaTransferencia
+	contaDestino.saldo += valorDaTransferencia
 	return "success!", c.saldo, contaDestino.saldo
 }
 
@@ -55,6 +55,9 @@ func main() {
 	fmt.Println(status, valor)
 
 	status, valor1, valor2 := contaDoMario.Transferir(100, &contaDoFlavia)
+	fmt.Println(status, valor1, valor2)
+
+	status, valor1, valor2 = contaDoFlavia.Transferir(125, &contaDoMario)
 	fmt.Println(status, valor1, valor2)
 
 }
