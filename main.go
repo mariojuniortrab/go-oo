@@ -13,5 +13,9 @@ func main() {
 	contaDoMario := ContaCorrente{"Mario", 589, 123456, 125.50}
 	contaDaFlavia := ContaCorrente{"Flavia", 111, 113456, 125.0}
 
-	fmt.Println(contaDoMario, contaDaFlavia)
+	var contaDaJoana *ContaCorrente
+	contaDaJoana = new(ContaCorrente)
+	contaDaJoana.titular = "Joana"
+
+	fmt.Println(contaDoMario, contaDaFlavia, contaDaJoana)
 }
